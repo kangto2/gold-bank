@@ -4,15 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gold Bank Test</title>
-    <!-- 파이 네트워크 SDK (테스터 식별용 필수 코드) -->
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
     <script>
         Pi.init({ version: "2.0", sandbox: true });
+
+        function authenticatePiUser() {
+            const scopes = ['username'];
+            const onIncompletePaymentFound = function(payment) {
+                console.log("Incomplete payment:", payment);
+            };
+
+            Pi.authenticate(scopes, onIncompletePaymentFound).then(function(auth) {
+                alert("인증 성공! 테스터 카운트가 파이 시스템에 정상적으로 반영되었습니다.");
+                document.getElementById("status").innerText = "인증 완료: 테스터 승인이 확인되었습니다.";
+            }).catch(function(error) {
+                alert("인증 실패: 앱 권한을 허용해 주셔야 합니다.");
+            });
+        }
     </script>
 </head>
 <body>
     <h1>골드뱅크 테스트 화면입니다</h1>
-    <p>파이 네트워크 앱 테스터 접속이 정상적으로 완료되었습니다.</p>
-    <p>현재 계정의 테스트 접속이 파이 시스템에 카운트됩니다.</p>
+    <p>파이 네트워크 앱 테스터 검증을 위해 아래 버튼을 반드시 눌러주세요.</p>
+    
+    <button onclick="authenticatePiUser()" style="padding: 15px 30px; font-size: 18px; background-color: #fbd633; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px;">
+        파이 계정으로 인증하기 (필수)
+    </button>
+    
+    <p id="status" style="margin-top: 20px; font-weight: bold; color: #2c3e50;"></p>
 </body>
 </html>
