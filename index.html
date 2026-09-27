@@ -1,55 +1,12 @@
-import type React from "react";
-import type { Metadata } from "next";
-import Script from "next/script";
-import "./globals.css";
-
-export const metadata: Metadata = {
-  title: "Gold Bank",
-  description: "Gold Bank",
-  generator: "v0.app",
-};
-
-export const viewport = {
-  themeColor: "#141a2e",
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-  viewportFit: "cover" as const,
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="ko" className="bg-background">
-      <head>
-        <style>{`
-          html {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-          }
-        `}</style>
-        <Script
-          src="https://sdk.minepi.com/pi-sdk.js"
-          strategy="beforeInteractive"
-        />
-      </head>
-      <body>
-        {children}
-        <Script id="pi-init" strategy="afterInteractive">
-          {`
-            if (typeof window !== 'undefined' && window.Pi) {
-              try {
-                window.Pi.init({ version: "2.0", sandbox: true });
-              } catch (e) {
-                console.log("Pi SDK init skipped");
-              }
-            }
-          `}
-        </Script>
-      </body>
-    </html>
-  );
-}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Bank Test</title>
+</head>
+<body>
+    <h1>골드뱅크 테스트 화면입니다</h1>
+    <p>파이 네트워크 앱 테스터 접속이 정상적으로 완료되었습니다.</p>
+</body>
+</html>
