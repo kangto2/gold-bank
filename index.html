@@ -6,7 +6,7 @@
     <title>Gold Bank Test</title>
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
     <script>
-        Pi.init({ version: "2.0", sandbox: true })
+        Pi.init({ version: "2.0", sandbox: false });
 
         function authenticatePiUser() {
             const scopes = ['username'];
@@ -26,11 +26,11 @@
 <body>
     <h1>골드뱅크 테스트 화면입니다</h1>
     <p>파이 네트워크 앱 테스터 검증을 위해 아래 버튼을 반드시 눌러주세요.</p>
-    
+
     <button onclick="authenticatePiUser()" style="padding: 15px 30px; font-size: 18px; background-color: #fbd633; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px;">
         파이 계정으로 인증하기 (필수)
     </button>
-    
+
     <p id="status" style="margin-top: 20px; font-weight: bold; color: #2c3e50;"></p>
 </body>
 </html>
